@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -10,7 +10,7 @@ import logger from '@/utils/logger';
 dotenv.config();
 
 // Crear aplicación Express
-const app = express();
+const app: Application = express();
 
 // ===========================
 // Middlewares de Seguridad
@@ -70,7 +70,7 @@ if (process.env.NODE_ENV === 'development') {
 // Health Check Endpoint
 // ===========================
 
-app.get('/health', (_req: any, res: any) => {
+app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'ok',
     message: 'Server is running',
@@ -84,8 +84,14 @@ app.get('/health', (_req: any, res: any) => {
 // API Routes
 // ===========================
 
-// Aquí irán las rutas (las agregaremos en las siguientes fases)
-app.get('/api/v1', (_req: any, res: any) => {
+// Importar rutas
+import authRoutes from '@/routes/auth.routes';
+
+// Montar rutas
+app.use('/api/v1/auth', authRoutes);
+
+// Endpoint de información de la API
+app.get('/api/v1', (req: Request, res: Response) => {
   res.status(200).json({
     message: 'Yard Sale API v1',
     version: '1.0.0',
@@ -104,7 +110,7 @@ app.get('/api/v1', (_req: any, res: any) => {
 // 404 Handler
 // ===========================
 
-app.use((req: any, res: any) => {
+app.use((req: Request, res: Response) => {
   res.status(404).json({
     error: 'Not Found',
     message: `Cannot ${req.method} ${req.originalUrl}`,
@@ -116,7 +122,7 @@ app.use((req: any, res: any) => {
 // Error Handler Global
 // ===========================
 
-app.use((err: Error, _req: any, res: any, _next: Function) => {
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   logger.error('Error:', {
     message: err.message,
     stack: err.stack,

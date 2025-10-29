@@ -3,7 +3,7 @@ import app from './app';
 import connectDB from '@/config/database';
 import logger from '@/utils/logger';
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Función para iniciar el servidor
 const startServer = async () => {
