@@ -380,15 +380,6 @@ mongosh
 5. Obtener connection string:
 
 ```
-mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/yardsale?retryWrites=true&w=majority
-```
-
-6. Actualizar `.env`:
-
-```env
-MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/yardsale?retryWrites=true&w=majority
-```
-
 ### 6.3 Crear archivo de configuración `src/config/database.ts`
 
 ```typescript
