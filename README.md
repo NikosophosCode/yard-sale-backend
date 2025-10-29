@@ -59,9 +59,6 @@ MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/yardsale?
 
 ### Connection String Ejemplo
 
-```
-mongodb+srv://yardsale_user:your-password@cluster0.xxxxx.mongodb.net/yardsale?retryWrites=true&w=majority
-```
 
 ## 🏃 Ejecución
 
